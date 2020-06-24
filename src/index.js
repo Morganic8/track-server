@@ -4,13 +4,14 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const requireAuth = require('./middlewares/requireAuth');
+const mongoDB = require('../dev');
 
 
 const app = express();
 app.use(bodyParser.json());
 app.use(authRoutes);
 
-const mongoUri = 'mongodb+srv://prodUser:dbREoWqACBDmRt6s@cluster0-sxm5l.mongodb.net/<dbname>?retryWrites=true&w=majority'
+const mongoUri = mongoDB.mongoUri
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
